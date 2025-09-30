@@ -1,0 +1,144 @@
+{
+  "info": {
+    "name": "GHL API - Sala 2 - ACTUALIZADA",
+    "description": "Colección actualizada para probar la API de GHL con Django - Ejercicio Sala 2",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "ghl_token",
+      "value": "tu_access_token",
+      "type": "string"
+    },
+    {
+      "key": "location_id",
+      "value": "CRlTCqv7ASS9xOpPQ59O",
+      "type": "string"
+    },
+    {
+      "key": "calendar_id",
+      "value": "2fgVoaRLnypQzl83H5gf",
+      "type": "string"
+    },
+    {
+      "key": "contact_id",
+      "value": "MfGsfig9eluEgIML9Huw",
+      "type": "string"
+    },
+    {
+      "key": "assigned_user_id",
+      "value": "lFqIyq3yCE6mZxNwIcID",
+      "type": "string"
+    },
+    {
+      "key": "ghl_id",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Crear Cita",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"calendarId\": \"{{calendar_id}}\",\n  \"contactId\": \"{{contact_id}}\",\n  \"locationId\": \"{{location_id}}\",\n  \"assignedUserId\": \"{{assigned_user_id}}\",\n  \"title\": \"Cita de Prueba\",\n  \"startTime\": \"2025-10-01T14:00:00Z\",\n  \"endTime\": \"2025-10-01T15:00:00Z\",\n  \"appointmentStatus\": \"confirmed\",\n  \"notes\": \"Cita creada desde Postman - Sala 2\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/appointments/create/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "appointments", "create", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2. Listar Citas",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/appointments/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "appointments", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3. Reprogramar Cita",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Cita Reprogramada - 3 Octubre\",\n  \"startTime\": \"2025-10-03T14:00:00-05:00\",\n  \"endTime\": \"2025-10-03T15:00:00-05:00\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/appointments/{{ghl_id}}/update/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "appointments", "{{ghl_id}}", "update", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "4. Cancelar Cita",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/appointments/{{ghl_id}}/delete/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "appointments", "{{ghl_id}}", "delete", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "5. Verificar Cita Actualizada",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/appointments/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "appointments", ""]
+        }
+      },
+      "response": []
+    }
+  ]
+}

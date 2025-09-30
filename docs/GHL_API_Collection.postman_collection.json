@@ -1,0 +1,144 @@
+{
+  "info": {
+    "name": "GHL API - Sala 2",
+    "description": "Colección para probar la API de GHL con Django - Ejercicio Sala 2",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000",
+      "type": "string"
+    },
+    {
+      "key": "ngrok_url",
+      "value": "https://tu-url.ngrok.io",
+      "type": "string"
+    },
+    {
+      "key": "ghl_token",
+      "value": "tu_access_token",
+      "type": "string"
+    },
+    {
+      "key": "location_id",
+      "value": "tu_location_id",
+      "type": "string"
+    },
+    {
+      "key": "calendar_id",
+      "value": "tu_calendar_id",
+      "type": "string"
+    },
+    {
+      "key": "contact_id",
+      "value": "tu_contact_id",
+      "type": "string"
+    },
+    {
+      "key": "assigned_user_id",
+      "value": "tu_user_id",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Crear Cita - Mañana",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"calendarId\": \"{{calendar_id}}\",\n  \"contactId\": \"{{contact_id}}\",\n  \"locationId\": \"{{location_id}}\",\n  \"assignedUserId\": \"{{assigned_user_id}}\",\n  \"title\": \"Cita de Prueba - Mañana\",\n  \"startTime\": \"2024-01-16T10:00:00Z\",\n  \"endTime\": \"2024-01-16T11:00:00Z\",\n  \"appointmentStatus\": \"confirmed\",\n  \"notes\": \"Cita creada desde Postman - Sala 2\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/appointments/create/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "appointments", "create", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2. Listar Citas",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/appointments/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "appointments", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3. Reprogramar Cita - Pasado Mañana",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Cita Reprogramada - Pasado Mañana\",\n  \"startTime\": \"2024-01-17T14:00:00Z\",\n  \"endTime\": \"2024-01-17T15:00:00Z\",\n  \"appointmentStatus\": \"confirmed\",\n  \"notes\": \"Cita reprogramada desde Postman - Sala 2\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/appointments/{{ghl_id}}/update/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "appointments", "{{ghl_id}}", "update", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "4. Verificar Cita Actualizada",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/appointments/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "appointments", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "5. Cancelar Cita",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/appointments/{{ghl_id}}/delete/",
+          "host": ["{{base_url}}"],
+          "path": ["api", "appointments", "{{ghl_id}}", "delete", ""]
+        }
+      },
+      "response": []
+    }
+  ]
+}
